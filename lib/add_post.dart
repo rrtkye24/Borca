@@ -183,15 +183,8 @@ class _AddPostPageState extends State<AddPostPage> {
               ))),
       body: ListView(
         children: [
-          new ListTile2(
-            head: Icon(Icons.abc_sharp),
-            title: [
-              new Text("sss"),
-              new Text("ss"),
-            ],
-            tail: Icon(Icons.abc_rounded),
-            description: [new Text("ssss")],
-          ),
+      
+
           new Form(
             key: _formkey,
             child: new Container(
@@ -354,36 +347,12 @@ class _AddPostPageState extends State<AddPostPage> {
                 ],
               ),
             ),
-<<<<<<< HEAD
-            DropdownButton<String>(
-              value: dvalue,
-              onChanged: (String? val) {
-                setState(() {
-                  dvalue = val!;
-                });
-              },
-              items: <String>['Main Post', 'Auction']
-                  .map((e) => DropdownMenuItem<String>(
-                        child: Text(e),
-                        value: e,
-                      ))
-                  .toList(),
-            ),
-            MaterialButton(
-              onPressed: () {
-                pickImage();
-              },
-              child: new Text("Tambah Foto"),
-              color: Colors.white,
-            ),
-            TextField()
-          ],
-        ),
-=======
-          ),
-        ],
->>>>>>> 4b6cb8b14cc9e34c01312dc0a65d0f47e02462d9
+
+        
+        
       ),
+        ]
+      )
     );
   }
 }

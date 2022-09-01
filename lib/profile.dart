@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:borca2/add_post.dart';
 import 'package:borca2/layout/layout.dart';
+import 'package:borca2/login.dart';
 import 'package:borca2/object/postingan.dart';
 import 'package:borca2/pawang/post_handler.dart';
 import 'package:borca2/pawang/profilehandler.dart';
@@ -429,7 +430,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           StreamBuilder(
                             stream: FirebaseFirestore.instance
-                                .collection("post_collection")
+                                .collection("post_collection").where("id_user", isEqualTo: uid == null ? "null" : uid)
                                 .snapshots(),
                             builder: (BuildContext context,
                                 AsyncSnapshot<QuerySnapshot> snapshot) {

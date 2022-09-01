@@ -56,8 +56,8 @@ class PostModel {
 
   static PostModel fromJson(Map<String, dynamic> json) => PostModel(
       id_user: json['id_user'],
-      picname: json['picname'],
-      title: json['title'],
+      picname: json['picname'] != null ? json['picname'] : "not found",
+      title: json['title']  != null ? json['title'] : "not found",
       description: json['description'],
       alamat: json['alamat'],
       typepost: json['typepost'],
@@ -214,7 +214,7 @@ class _PostWidState extends State<PostWid> {
 
   Future<Map> bidCountF() async {
     var wh;
-    var whoHigher = await FirebaseFirestore.instance
+    var whoHigher =  await FirebaseFirestore.instance
         .collection("auction")
         .where("postModel.id", isEqualTo: widget.post.id)
         .orderBy("amount", descending: true)
@@ -472,44 +472,7 @@ class _PostWidState extends State<PostWid> {
                                   return CircularProgressIndicator();
                                 }),
                             new Padding(padding: new EdgeInsets.all(10)),
-                            widget.post.typepost != "Main post"
-                                ? FutureBuilder(
-                                    future: bidCountF(),
-                                    builder: (context, ss) {
-                                      if (ss.hasData) {
-                                        return Row(
-                                          children: [
-                                            new GestureDetector(
-                                              onTap: () {
-                                                _showauction();
-                                              },
-                                              child: new SvgPicture.asset(
-                                                "assets/icons/bid.svg",
-                                                width: 20,
-                                              ),
-                                            ),
-                                            new Padding(
-                                                padding: new EdgeInsets.all(3)),
-                                            new Text(
-                                              ((ss.data as Map)["jumlah"]
-                                                      as int)
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20),
-                                            ),
-                                            new Padding(
-                                                padding: EdgeInsets.all(10)),
-                                            Text(
-                                                "Penawaran Tertinggi ${(ss.data as Map)["siapa"]["bidder"]["username"]}")
-                                          ],
-                                        );
-                                      }
-
-                                      print("${ss.connectionState} jose");
-                                      return CircularProgressIndicator();
-                                    })
-                                : Container(),
+                            
                           ],
                         ),
                         new Padding(padding: EdgeInsets.all(10)),

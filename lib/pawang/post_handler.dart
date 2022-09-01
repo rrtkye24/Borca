@@ -102,7 +102,7 @@ class PostHandler {
       print("ada gan");
       return downloadLink;
     } catch (error) {
-      print('file not found');
+      print("errornya : ${error.toString()}");
       return "[kosong]";
     }
   }
